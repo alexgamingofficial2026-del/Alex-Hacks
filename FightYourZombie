@@ -1,8 +1,3 @@
--- =============================================
--- FIGHT ZOMBIE - GUI Ultra Compacto
--- Para Delta Executor
--- =============================================
-
 local a = game:GetService("Players")
 local b = game:GetService("TweenService")
 local c = game:GetService("ReplicatedStorage")
