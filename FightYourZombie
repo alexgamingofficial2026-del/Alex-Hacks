@@ -1,1 +1,401 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/alexgamingofficial2026-del/Alex-Hacks/refs/heads/main/FightYourZomb"))()
+-- =============================================
+-- FIGHT ZOMBIE - GUI Ultra Compacto
+-- Para Delta Executor
+-- =============================================
+
+local a = game:GetService("Players")
+local b = game:GetService("TweenService")
+local c = game:GetService("ReplicatedStorage")
+local d = game:GetService("RunService")
+
+local e = a.LocalPlayer
+local f = e:WaitForChild("PlayerGui", 10)
+
+local g = Instance.new("ScreenGui")
+g.Name = "FightZombie"
+g.ResetOnSpawn = false
+g.IgnoreGuiInset = true
+g.DisplayOrder = 999
+g.Parent = f
+
+local h = Instance.new("Frame")
+h.Size = UDim2.new(0, 280, 0, 340)
+h.Position = UDim2.new(0.5, -140, 0.5, -170)
+h.BackgroundColor3 = Color3.fromRGB(7, 7, 11)
+h.BorderSizePixel = 0
+h.Active = true
+h.Draggable = true
+h.Parent = g
+
+local i = Instance.new("UICorner")
+i.CornerRadius = UDim.new(0, 14)
+i.Parent = h
+
+local j = Instance.new("TextLabel")
+j.Size = UDim2.new(1, 0, 0, 42)
+j.BackgroundTransparency = 1
+j.Text = "FIGHT ZOMBIE"
+j.TextColor3 = Color3.fromRGB(255, 215, 0)
+j.TextSize = 18
+j.Font = Enum.Font.GothamBold
+j.TextXAlignment = Enum.TextXAlignment.Center
+j.Parent = h
+
+local k = Instance.new("UIStroke")
+k.Thickness = 1
+k.Color = Color3.fromRGB(255, 230, 100)
+k.Transparency = 0.75
+k.Parent = j
+
+local l = Instance.new("TextButton")
+l.Size = UDim2.new(0, 30, 0, 30)
+l.Position = UDim2.new(1, -36, 0, 7)
+l.BackgroundTransparency = 1
+l.Text = "▲"
+l.TextColor3 = Color3.fromRGB(180, 180, 190)
+l.TextSize = 20
+l.Font = Enum.Font.GothamBold
+l.Parent = h
+
+local m = Instance.new("Frame")
+m.Size = UDim2.new(1, -24, 0, 1)
+m.Position = UDim2.new(0, 12, 0, 43)
+m.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+m.Parent = h
+
+local n = Instance.new("ScrollingFrame")
+n.Size = UDim2.new(1, -20, 1, -95)
+n.Position = UDim2.new(0, 10, 0, 52)
+n.BackgroundTransparency = 1
+n.ScrollBarThickness = 3
+n.ScrollBarImageColor3 = Color3.fromRGB(50, 50, 60)
+n.Parent = h
+
+local o = Instance.new("UIListLayout")
+o.Padding = UDim.new(0, 6)
+o.SortOrder = Enum.SortOrder.LayoutOrder
+o.Parent = n
+
+local function p()
+    n.CanvasSize = UDim2.new(0, 0, 0, o.AbsoluteContentSize.Y + 15)
+end
+o:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(p)
+
+local q = false
+local r = nil
+
+local s = Instance.new("Frame")
+s.Size = UDim2.new(1, 0, 0, 42)
+s.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+s.Parent = n
+
+local t = Instance.new("UICorner")
+t.CornerRadius = UDim.new(0, 10)
+t.Parent = s
+
+local u = Instance.new("TextLabel")
+u.Size = UDim2.new(0.7, 0, 1, 0)
+u.BackgroundTransparency = 1
+u.Text = "   AUTO CLICK (1-10)"
+u.TextColor3 = Color3.fromRGB(255, 255, 255)
+u.TextXAlignment = Enum.TextXAlignment.Left
+u.Font = Enum.Font.GothamBold
+u.TextSize = 15
+u.Parent = s
+
+local v = Instance.new("TextButton")
+v.Size = UDim2.new(0, 48, 0, 26)
+v.Position = UDim2.new(1, -58, 0.5, -13)
+v.BackgroundColor3 = Color3.fromRGB(55, 55, 60)
+v.Text = ""
+v.Parent = s
+
+local w = Instance.new("UICorner")
+w.CornerRadius = UDim.new(1, 0)
+w.Parent = v
+
+local x = c:WaitForChild("Remotes"):WaitForChild("TapButtonClick")
+
+v.MouseButton1Click:Connect(function()
+    q = not q
+    b:Create(v, TweenInfo.new(0.25), {
+        BackgroundColor3 = q and Color3.fromRGB(0, 170, 100) or Color3.fromRGB(55, 55, 60)
+    }):Play()
+    
+    if q then
+        r = d.Heartbeat:Connect(function()
+            for i = 1, 10 do
+                local plot = workspace.Plots:GetChildren()[i]
+                if plot then
+                    x:FireServer(plot)
+                end
+            end
+        end)
+        print("AUTO CLICK: Activado (Plots 1-10)")
+    else
+        if r then
+            r:Disconnect()
+            r = nil
+        end
+        print("AUTO CLICK: Desactivado")
+    end
+end)
+
+local y = false
+local z = nil
+
+local A = Instance.new("Frame")
+A.Size = UDim2.new(1, 0, 0, 42)
+A.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+A.Parent = n
+
+local B = Instance.new("UICorner")
+B.CornerRadius = UDim.new(0, 10)
+B.Parent = A
+
+local C = Instance.new("TextLabel")
+C.Size = UDim2.new(0.7, 0, 1, 0)
+C.BackgroundTransparency = 1
+C.Text = "   AUTO PRESTIGE"
+C.TextColor3 = Color3.fromRGB(255, 255, 255)
+C.TextXAlignment = Enum.TextXAlignment.Left
+C.Font = Enum.Font.GothamBold
+C.TextSize = 15
+C.Parent = A
+
+local D = Instance.new("TextButton")
+D.Size = UDim2.new(0, 48, 0, 26)
+D.Position = UDim2.new(1, -58, 0.5, -13)
+D.BackgroundColor3 = Color3.fromRGB(55, 55, 60)
+D.Text = ""
+D.Parent = A
+
+local E = Instance.new("UICorner")
+E.CornerRadius = UDim.new(1, 0)
+E.Parent = D
+
+local F = c:WaitForChild("Remotes"):WaitForChild("Prestige")
+
+D.MouseButton1Click:Connect(function()
+    y = not y
+    b:Create(D, TweenInfo.new(0.25), {
+        BackgroundColor3 = y and Color3.fromRGB(0, 170, 100) or Color3.fromRGB(55, 55, 60)
+    }):Play()
+    
+    if y then
+        z = d.Heartbeat:Connect(function()
+            F:InvokeServer()
+        end)
+        print("AUTO PRESTIGE: Activado")
+    else
+        if z then
+            z:Disconnect()
+            z = nil
+        end
+        print("AUTO PRESTIGE: Desactivado")
+    end
+end)
+
+local G = false
+local H = nil
+
+local I = Instance.new("Frame")
+I.Size = UDim2.new(1, 0, 0, 42)
+I.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+I.Parent = n
+
+local J = Instance.new("UICorner")
+J.CornerRadius = UDim.new(0, 10)
+J.Parent = I
+
+local K = Instance.new("TextLabel")
+K.Size = UDim2.new(0.7, 0, 1, 0)
+K.BackgroundTransparency = 1
+K.Text = "   AUTO LEVEL UP"
+K.TextColor3 = Color3.fromRGB(255, 255, 255)
+K.TextXAlignment = Enum.TextXAlignment.Left
+K.Font = Enum.Font.GothamBold
+K.TextSize = 15
+K.Parent = I
+
+local L = Instance.new("TextButton")
+L.Size = UDim2.new(0, 48, 0, 26)
+L.Position = UDim2.new(1, -58, 0.5, -13)
+L.BackgroundColor3 = Color3.fromRGB(55, 55, 60)
+L.Text = ""
+L.Parent = I
+
+local M = Instance.new("UICorner")
+M.CornerRadius = UDim.new(1, 0)
+M.Parent = L
+
+local N = c:WaitForChild("Remotes"):WaitForChild("TapLevelUp")
+
+L.MouseButton1Click:Connect(function()
+    G = not G
+    b:Create(L, TweenInfo.new(0.25), {
+        BackgroundColor3 = G and Color3.fromRGB(0, 170, 100) or Color3.fromRGB(55, 55, 60)
+    }):Play()
+    
+    if G then
+        H = d.Heartbeat:Connect(function()
+            N:InvokeServer(game:GetService("Players").LocalPlayer.PlayerGui.LevelUp)
+            N:InvokeServer(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()[46])
+            N:InvokeServer(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()[47])
+            N:InvokeServer(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()[49])
+            N:InvokeServer(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()[55])
+            N:InvokeServer(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()[52])
+        end)
+        print("AUTO LEVEL UP: Activado")
+    else
+        if H then
+            H:Disconnect()
+            H = nil
+        end
+        print("AUTO LEVEL UP: Desactivado")
+    end
+end)
+
+local O = false
+local P = nil
+
+local Q = Instance.new("Frame")
+Q.Size = UDim2.new(1, 0, 0, 42)
+Q.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+Q.Parent = n
+
+local R = Instance.new("UICorner")
+R.CornerRadius = UDim.new(0, 10)
+R.Parent = Q
+
+local S = Instance.new("TextLabel")
+S.Size = UDim2.new(0.7, 0, 1, 0)
+S.BackgroundTransparency = 1
+S.Text = "   AUTO FEED"
+S.TextColor3 = Color3.fromRGB(255, 255, 255)
+S.TextXAlignment = Enum.TextXAlignment.Left
+S.Font = Enum.Font.GothamBold
+S.TextSize = 15
+S.Parent = Q
+
+local T = Instance.new("TextButton")
+T.Size = UDim2.new(0, 48, 0, 26)
+T.Position = UDim2.new(1, -58, 0.5, -13)
+T.BackgroundColor3 = Color3.fromRGB(55, 55, 60)
+T.Text = ""
+T.Parent = Q
+
+local U = Instance.new("UICorner")
+U.CornerRadius = UDim.new(1, 0)
+U.Parent = T
+
+local V = c:WaitForChild("Remotes"):WaitForChild("TreeClick")
+
+T.MouseButton1Click:Connect(function()
+    O = not O
+    b:Create(T, TweenInfo.new(0.25), {
+        BackgroundColor3 = O and Color3.fromRGB(0, 170, 100) or Color3.fromRGB(55, 55, 60)
+    }):Play()
+    
+    if O then
+        P = d.Heartbeat:Connect(function()
+            V:InvokeServer(workspace.Mutations.Normal.Tree)
+        end)
+        print("AUTO FEED: Activado")
+    else
+        if P then
+            P:Disconnect()
+            P = nil
+        end
+        print("AUTO FEED: Desactivado")
+    end
+end)
+
+local W = false
+local X = nil
+
+local Y = Instance.new("Frame")
+Y.Size = UDim2.new(1, 0, 0, 42)
+Y.BackgroundColor3 = Color3.fromRGB(18, 18, 24)
+Y.Parent = n
+
+local Z = Instance.new("UICorner")
+Z.CornerRadius = UDim.new(0, 10)
+Z.Parent = Y
+
+local a0 = Instance.new("TextLabel")
+a0.Size = UDim2.new(0.7, 0, 1, 0)
+a0.BackgroundTransparency = 1
+a0.Text = "   AUTO ZOMBIES"
+a0.TextColor3 = Color3.fromRGB(255, 255, 255)
+a0.TextXAlignment = Enum.TextXAlignment.Left
+a0.Font = Enum.Font.GothamBold
+a0.TextSize = 15
+a0.Parent = Y
+
+local a1 = Instance.new("TextButton")
+a1.Size = UDim2.new(0, 48, 0, 26)
+a1.Position = UDim2.new(1, -58, 0.5, -13)
+a1.BackgroundColor3 = Color3.fromRGB(55, 55, 60)
+a1.Text = ""
+a1.Parent = Y
+
+local a2 = Instance.new("UICorner")
+a2.CornerRadius = UDim.new(1, 0)
+a2.Parent = a1
+
+local a3 = c:WaitForChild("Remotes"):WaitForChild("AxeSwing")
+
+a1.MouseButton1Click:Connect(function()
+    W = not W
+    b:Create(a1, TweenInfo.new(0.25), {
+        BackgroundColor3 = W and Color3.fromRGB(0, 170, 100) or Color3.fromRGB(55, 55, 60)
+    }):Play()
+    
+    if W then
+        X = d.Heartbeat:Connect(function()
+            a3:FireServer()
+        end)
+        print("AUTO ZOMBIES: Activado")
+    else
+        if X then
+            X:Disconnect()
+            X = nil
+        end
+        print("AUTO ZOMBIES: Desactivado")
+    end
+end)
+
+local a4 = Instance.new("TextLabel")
+a4.Size = UDim2.new(1, -20, 0, 16)
+a4.Position = UDim2.new(0, 10, 1, -24)
+a4.BackgroundTransparency = 1
+a4.Text = "Made By : ALEX X"
+a4.TextColor3 = Color3.fromRGB(85, 85, 95)
+a4.TextSize = 11
+a4.Font = Enum.Font.GothamBold
+a4.TextXAlignment = Enum.TextXAlignment.Center
+a4.Parent = h
+
+local a5 = false
+local a6 = h.Size
+
+l.MouseButton1Click:Connect(function()
+    a5 = not a5
+    if a5 then
+        l.Text = "▼"
+        b:Create(h, TweenInfo.new(0.3), {Size = UDim2.new(0, 280, 0, 50)}):Play()
+        n.Visible = false
+        a4.Visible = false
+    else
+        l.Text = "▲"
+        b:Create(h, TweenInfo.new(0.35), {Size = a6}):Play()
+        n.Visible = true
+        a4.Visible = true
+    end
+end)
+
+h.Size = UDim2.new(0, 0, 0, 0)
+b:Create(h, TweenInfo.new(0.45, Enum.EasingStyle.Back), {Size = a6}):Play()
+
+print("✅ FIGHT ZOMBIE - Script cargado correctamente")
